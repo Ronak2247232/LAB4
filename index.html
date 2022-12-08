@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        myFunction(this);
+    }
+};
+xhttp.open("GET", "text.xml", true);
+xhttp.send();
+
+/*
+function myFunction(xml) {
+    var x, y, i, newElement, txt, xmlDoc;
+    xmlDoc = xml.responseXML;
+    newElement = xmlDoc.createElement("course");
+    x = xmlDoc.getElementsByTagName("student")[0]
+    x.appendChild(newElement);
+
+
+    xlen = x.childNodes.length;
+    y = x.firstChild;
+    txt = "";
+    for (i = 0; i < xlen; i++) {
+        if (y.nodeType == 1) {
+            txt += y.nodeName + "<br>";
+        }
+        y = y.nextSibling;
+    }
+    document.getElementById("demo1").innerHTML = txt;
+}
+*/
+
+//Change Value
+
+function myFunction(xml) {
+    var xmlDoc = xml.responseXML;
+    var x;
+    x = xmlDoc.getElementsByTagName("name")[0].childNodes[0];
+    document.getElementById("demo1").innerHTML = x.nodeValue;
+    x.nodeValue = "Prasad";
+    x = xmlDoc.getElementsByTagName("name")[0].childNodes[0];
+    document.getElementById("demo2").innerHTML = x.nodeValue;
+}
+
+
+//Remove Block
+/*
+function myFunction(xml) {
+    var xmlDoc = xml.responseXML;
+    var root = xmlDoc.documentElement;
+    var currNode = root.childNodes[1];
+    removedNode = currNode.removeChild(currNode.childNodes[1]);
+    document.getElementById("demo1").innerHTML = "Removed node: " + removedNode.nodeName;
+}
+/*
+
+/*
+//Remove Node
+function myFunction(xml) {
+    var xmlDoc = xml.responseXML;
+    var root = xmlDoc.documentElement;
+    var currNode = root.childNodes[1];
+    removedNode = root.removeChild(root.childNodes[1]);
+    document.getElementById("demo1").innerHTML = "Removed node: " + removedNode.nodeName;
+}
+*/
+</script>
+
+</body>
+</html>
